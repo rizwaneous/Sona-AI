@@ -1,4 +1,4 @@
-
+name: Build SONA Docker Image
 on:
   push:
     branches: [main]
