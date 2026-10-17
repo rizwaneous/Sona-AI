@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
       console.error('Chat error:', error);
       removeLoadingMessage(loadingId);
       appendBotMessage(
-        '**فاطمہ فرٹیلائزر (سرسبز):** سرسبز کین گوارا، سرسبز نائٹروفاس، اور فصل پے فنانسنگ کے ساتھ آپ کی خدمت میں حاضر ہیں۔',
+        '**سونا AI (زرعی فنانسنگ):** کین گوارا، نائٹروفاس، اور فصل پے فنانسنگ کے ساتھ آپ کی خدمت میں حاضر ہوں۔',
         '',
         null,
         null,
@@ -496,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="fasalpay-badge">
               <i class="fa-solid fa-shield-halved"></i> ${orderData.payment_method || orderData.paymentMethod || 'FasalPay BNPL Financing'}
             </div>
-            <span><i class="fa-brands fa-whatsapp text-green"></i> Dispatched to Nearest Fatima Dealer Network</span>
+            <span><i class="fa-brands fa-whatsapp text-green"></i> Dispatched to Nearest Regional Dealer Network</span>
           </div>
         </div>
       `;
@@ -571,7 +571,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li>🛑 <strong>Immediate Chemical Freeze:</strong> Halt all Urea & pesticide applications right now.</li>
                 <li>🚜 <strong>Hydraulic Action:</strong> Clear field drainage canals to prevent waterlogging.</li>
                 <li>📦 <strong>Storage Protection:</strong> Move bagged fertilizer to elevated, waterproof storage.</li>
-                <li>📢 <strong>Dealer Network Alerted:</strong> Transport freeze notice logged to nearby Fatima dealer ledger.</li>
+                <li>📢 <strong>Dealer Network Alerted:</strong> Transport freeze notice logged to nearby dealer ledger.</li>
               </ul>
             </div>
 
@@ -716,9 +716,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="sarsabz-voice-header">
             <div class="sarsabz-badge">
               <i class="fa-solid fa-volume-high text-yellow"></i>
-              <span>Sarsabz Voice Audio Guide</span>
+              <span>Sona Voice Audio Guide</span>
             </div>
-            <span class="sarsabz-tag">Fatima Official Voice</span>
+            <span class="sarsabz-tag">Sona Voice Guide</span>
           </div>
           <div class="audio-player-controls">
             <button class="play-audio-btn" data-speech-text="${escapeHtml(speechText)}">
@@ -738,7 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
       thought: 'Processed agricultural inquiry against regional agronomy standards. Validated Open-Meteo live weather telemetry, simulated soil nitrogen uptake, and enforced ISO 42001 Human-in-the-Loop authorization policies.',
       tools: [
         { name: 'openMeteo.getLiveTelemetry', badgeClass: 'badge-api', badgeText: 'API', meta: '44ms • 200 OK', details: 'Queried Open-Meteo High-Resolution NWP radar stream (Lat 30.3017°N, 71.9321°E).' },
-        { name: 'agronomy.fatimaDosageMatrix', badgeClass: 'badge-js', badgeText: 'JS', meta: '14ms • Computed', details: 'Computed certified NPK balance for Wheat (CAN & NitroPhos).' },
+        { name: 'agronomy.precisionDosageMatrix', badgeClass: 'badge-js', badgeText: 'JS', meta: '14ms • Computed', details: 'Computed certified NPK balance for Wheat (CAN & NitroPhos).' },
         { name: 'governance.hitlGateEvaluation', badgeClass: 'badge-hitl', badgeText: 'HITL', meta: '8ms • ISO 42001', details: 'Enforced operator agronomic sign-off gate before chemical application.' }
       ]
     };
@@ -796,7 +796,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div class="message-content">
         <div class="message-header">
-          <span class="sender-name">${councilData ? 'Multi-Agent Agronomy Council (Fatima & FasalPay)' : 'Sarsabz AI (Fatima Fertilizer & FasalPay)'}</span>
+          <span class="sender-name">${councilData ? 'Multi-Agent Agronomy Council (Sona AI)' : 'Sona AI (Autonomous Agronomy & FasalPay)'}</span>
           <span class="timestamp">${getCurrentTime()}</span>
         </div>
         ${agentTraceHtml}
@@ -869,7 +869,7 @@ document.addEventListener('DOMContentLoaded', () => {
       { badge: 'API', badgeClass: 'badge-api', text: `Querying Open-Meteo NWP Radar Telemetry for ${locLabel}` },
       { badge: 'SUBAGENT', badgeClass: 'badge-ai', text: `Invoking Dr. Tariq: Phenological NPK demand & tillering analysis` },
       { badge: 'SUBAGENT', badgeClass: 'badge-api', text: `Invoking Sentinel-Weather: Satellite rain risk & wind drift envelope` },
-      { badge: 'SUBAGENT', badgeClass: 'badge-js', text: `Invoking FasalPay Fintech: Fatima depot stock audit & 0% BNPL credit` },
+      { badge: 'SUBAGENT', badgeClass: 'badge-js', text: `Invoking FasalPay Fintech: Regional depot stock audit & 0% BNPL credit` },
       { badge: 'HITL', badgeClass: 'badge-hitl', text: `Chief Arbiter: Synthesizing consensus & generating Operator Decision Gate` }
     ];
 
@@ -1998,7 +1998,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (hudGpsVal) hudGpsVal.textContent = prof.district || 'Islamabad (33.63°N, 73.14°E)';
     if (hudCropVal) hudCropVal.textContent = `${prof.crops || 'Wheat'} • ${prof.acres || 10} Acres`;
     if (hudStageVal) hudStageVal.textContent = `${(prof.stage || 'Tillering').split('/')[0].trim()} Stage`;
-    if (hudDepotVal) hudDepotVal.textContent = `Fatima ${(prof.district || 'Regional').split(' ')[0]} Center`;
+    if (hudDepotVal) hudDepotVal.textContent = `Agro Depot & FasalPay Center (${(prof.district || 'Regional').split(' ')[0]})`;
   }
 
   function addConsoleLog(tag, message) {
@@ -2083,7 +2083,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         addConsoleLog('DR. TARIQ', `👨‍⚕️ Prescribed ${draft.items || 'CAN Fertilizer'} for vegetative tillering demand.`);
         addConsoleLog('SENTINEL', '🛰️ Weather Telemetry: 10-day precipitation hazard is 0%. Clear skies ensure 100% nutrient absorption.');
-        addConsoleLog('FASALPAY', `🏦 Verified Fatima Depot stock. 0% markup BNPL credit approved (Rs. ${(draft.totalAmount || 148200).toLocaleString()}).`);
+        addConsoleLog('FASALPAY', `🏦 Verified Regional Depot stock. 0% markup BNPL credit approved (Rs. ${(draft.totalAmount || 148200).toLocaleString()}).`);
 
         if (step3Item) {
           step3Item.classList.remove('active');
@@ -2146,7 +2146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <i class="fa-solid fa-volume-high text-yellow"></i>
                     <span>Sona Audio Guidance (سنیں)</span>
                   </div>
-                  <span class="sarsabz-tag">Fatima Official Voice</span>
+                  <span class="sarsabz-tag">Sona AI Official Voice</span>
                 </div>
                 <div class="audio-player-controls">
                   <button class="play-audio-btn" data-speech-text="${escapeHtml(audit.speechText || audit.decisionPromptUrdu)}">
@@ -2418,7 +2418,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const confirmBtn = document.getElementById('cockpitConfirmOrderBtn');
           if (confirmBtn) {
             confirmBtn.addEventListener('click', async () => {
-              confirmBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Disbursing to Fatima Depot...';
+              confirmBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Disbursing to Regional Depot...';
               confirmBtn.disabled = true;
 
               try {
@@ -2588,7 +2588,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Step 3: Crisis Mitigation Protocol
         if (step3Item) step3Item.classList.add('active');
         addConsoleLog('PROTOCOL', '🛑 Immediate 48-Hour Chemical Application Freeze declared under ISO 42001 HITL safety protocols.');
-        addConsoleLog('DEPOT ALERT', '📢 Notice dispatched to regional Fatima dealer: transport lock activated.');
+        addConsoleLog('DEPOT ALERT', '📢 Notice dispatched to regional dealer: transport lock activated.');
         
         if (step3Item) { step3Item.classList.remove('active'); step3Item.classList.add('done'); }
 
@@ -2643,7 +2643,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <i class="fa-solid fa-volume-high text-yellow"></i>
                     <span>Emergency Audio Guide (سنیں)</span>
                   </div>
-                  <span class="sarsabz-tag">Fatima Emergency Broadcast</span>
+                  <span class="sarsabz-tag">Sona Emergency Broadcast</span>
                 </div>
                 <div class="audio-player-controls">
                   <button class="play-audio-btn" data-speech-text="${escapeHtml(stormData.speechText || stormData.text)}">
@@ -2694,7 +2694,7 @@ document.addEventListener('DOMContentLoaded', () => {
               if (resultArea) {
                 resultArea.innerHTML = `
                   <div style="background: #DCFCE7; border: 1.5px solid #16A34A; color: #166534; padding: 12px; border-radius: 8px; font-size: 0.88rem;">
-                    <strong>✓ Certified Emergency Mitigation Locked:</strong> Chemical freeze notice logged with regional Fatima dealer network. Fertilizer dispatches postponed for 48h until post-rain soil drying. Capital conserved: <strong>Rs. ${(loss.pkrSaved || 66000).toLocaleString()}</strong>.
+                    <strong>✓ Certified Emergency Mitigation Locked:</strong> Chemical freeze notice logged with regional dealer network. Fertilizer dispatches postponed for 48h until post-rain soil drying. Capital conserved: <strong>Rs. ${(loss.pkrSaved || 66000).toLocaleString()}</strong>.
                   </div>
                 `;
               }

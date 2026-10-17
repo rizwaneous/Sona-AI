@@ -42,8 +42,8 @@ const CROP_DISEASE_PRESETS = {
     severity: 'Critical Threat (پھول اور ٹینڈے متاثر)',
     symptomsUrdu: 'پتوں کا اوپر یا نیچے کی طرف مڑ جانا، پتوں کی رگوں کا موٹا ہو جانا اور نیچے پتے نما اضافی ساختیں (Enations) بننا۔',
     symptomsEn: 'Upward/downward leaf curling, vein thickening, and stunted internodes transmitted by whiteflies.',
-    fatimaPrescriptionUrdu: 'سفید مکھی کے خاتمے کے لیے **پیری پروکسی فین (Pyriproxyfen) + ایسیٹامپرڈ** کا اسپرے کریں۔ پودے کی قوت مدافعت بڑھانے کے لیے **سرسبز زنک اور کین گوارا** کا متوازن استعمال کریں۔',
-    fatimaPrescriptionEn: 'Control whitefly vector via Acetamiprid / Pyriproxyfen. Apply balanced Sarsabz Zinc and CAN to restore physiological resilience.',
+    fatimaPrescriptionUrdu: 'سفید مکھی کے خاتمے کے لیے **پیری پروکسی فین (Pyriproxyfen) + ایسیٹامپرڈ** کا اسپرے کریں۔ پودے کی قوت مدافعت بڑھانے کے لیے **زنک اور کین گوارا** کا متوازن استعمال کریں۔',
+    fatimaPrescriptionEn: 'Control whitefly vector via Acetamiprid / Pyriproxyfen. Apply balanced Zinc and CAN to restore physiological resilience.',
     edgeModelMetrics: {
       model: 'MobileNetV4-Agri-Int8 (Edge ONNX)',
       latencyMs: 41,
@@ -61,8 +61,8 @@ const CROP_DISEASE_PRESETS = {
     severity: 'Moderate to High (پیداوار میں 30% کمی کا خدشہ)',
     symptomsUrdu: 'پتوں پر تکونی یا کشتی نما دھبے جن کا درمیان سرمئی یا سفید اور کنارے گہرے بھورے ہوتے ہیں۔',
     symptomsEn: 'Spindle-shaped elliptical lesions with gray/white necrotic centers and reddish-brown margins.',
-    fatimaPrescriptionUrdu: '**ٹرائی سائیکلازول (Tricyclazole 75% WP)** 120 گرام فی ایکڑ اسپرے کریں۔ کھیت میں کھڑا پانی رکھیں اور سرسبز نائٹروفاس کی متوازن خوراک دیں۔',
-    fatimaPrescriptionEn: 'Apply Tricyclazole 75% WP at 120g/acre. Maintain shallow standing water in paddy; balance with Sarsabz NitroPhos.',
+    fatimaPrescriptionUrdu: '**ٹرائی سائیکلازول (Tricyclazole 75% WP)** 120 گرام فی ایکڑ اسپرے کریں۔ کھیت میں کھڑا پانی رکھیں اور نائٹروفاس کی متوازن خوراک دیں۔',
+    fatimaPrescriptionEn: 'Apply Tricyclazole 75% WP at 120g/acre. Maintain shallow standing water in paddy; balance with NitroPhos.',
     edgeModelMetrics: {
       model: 'MobileNetV4-Agri-Int8 (Edge ONNX)',
       latencyMs: 44,
@@ -80,8 +80,8 @@ const CROP_DISEASE_PRESETS = {
     severity: 'Healthy (کوئی بیماری نہیں)',
     symptomsUrdu: 'پتے گہرے سبز، رگیں متوازن اور کلوروفل کی مقدار مکمل۔ فنگس یا کیڑوں کے کوئی اثرات موجود نہیں۔',
     symptomsEn: 'Uniform rich green foliage, robust vascular turgor, no visible chlorosis or lesions.',
-    fatimaPrescriptionUrdu: 'فصل بہترین حالت میں ہے۔ پہلے اور دوسرے پانی پر صرف **1 بوری سرسبز کین گوارا (CAN)** فی ایکڑ جاری رکھیں تاکہ بھرپور پیداوار حاصل ہو۔',
-    fatimaPrescriptionEn: 'Crop in optimal health. Continue standard Fatima schedule: 1 bag Sarsabz CAN per acre at first & second irrigation.',
+    fatimaPrescriptionUrdu: 'فصل بہترین حالت میں ہے۔ پہلے اور دوسرے پانی پر صرف **1 بوری کین گوارا (CAN)** فی ایکڑ جاری رکھیں تاکہ بھرپور پیداوار حاصل ہو۔',
+    fatimaPrescriptionEn: 'Crop in optimal health. Continue standard precision schedule: 1 bag CAN per acre at first & second irrigation.',
     edgeModelMetrics: {
       model: 'MobileNetV4-Agri-Int8 (Edge ONNX)',
       latencyMs: 29,
@@ -110,7 +110,7 @@ async function diagnoseCropLeaf({ presetId, imageBase64, crop = 'Wheat' }) {
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
       const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
 
-      const prompt = `You are the Fatima Fertilizer & Sarsabz AI Senior Agronomist and Plant Pathologist.
+      const prompt = `You are the Sona AI Senior Agronomist and Plant Pathologist.
 Analyze this crop leaf/plant image.
 Output a JSON response with:
 {

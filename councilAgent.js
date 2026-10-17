@@ -24,7 +24,7 @@ const ELECTRONIC_FIELD_RECORDS = {
       nitrogenDeficit: 'Medium-High',
       moistureSaturationPct: 42
     },
-    localFatimaDealer: 'Fatima Agro Services Khanewal Main Bypass',
+    localFatimaDealer: 'Agro Services Regional Depot (Khanewal)',
     fasalPayCreditLimit: 150000,
     fasalPayAvailableCredit: 111000
   }
@@ -43,9 +43,9 @@ function runAgronomistAgent({ crop, acres, soilProfile, proposal }) {
     role: 'Crop Phenology & Soil Nutrient Specialist',
     avatar: 'fa-user-doctor',
     stance: 'RECOMMEND_APPLICATION',
-    argumentUrdu: `گندم اس وقت شگوفے نکالنے (Tillering) کے اہم مرحلے میں ہے۔ پودے کو فوری نائٹروجن درکار ہے تاکہ خوشے بڑے بن سکیں۔ میری تجویز ہے کہ فوری طور پر 1.5 بوری سرسبز کین گوارا (CAN) فی ایکڑ ڈالی جائے۔`,
-    argumentEn: `Wheat crop is in critical tillering stage. Immediate vegetative nitrogen is needed to maximize tillers per square meter. Recommends 1.5 bags/acre of Sarsabz CAN.`,
-    recommendedProduct: 'Sarsabz CAN (Calcium Ammonium Nitrate 26% N)',
+    argumentUrdu: `گندم اس وقت شگوفے نکالنے (Tillering) کے اہم مرحلے میں ہے۔ پودے کو فوری نائٹروجن درکار ہے تاکہ خوشے بڑے بن سکیں۔ میری تجویز ہے کہ فوری طور پر 1.5 بوری کین گوارا (CAN) فی ایکڑ ڈالی جائے۔`,
+    argumentEn: `Wheat crop is in critical tillering stage. Immediate vegetative nitrogen is needed to maximize tillers per square meter. Recommends 1.5 bags/acre of CAN.`,
+    recommendedProduct: 'CAN (Calcium Ammonium Nitrate 26% N)',
     recommendedBags: Math.round(1.5 * acresNum),
     priority: 'HIGH_BIOLOGICAL_NEED'
   };
@@ -104,10 +104,10 @@ function runEconomistAgent({ acres, recommendedBags, willWashout, rainProb }) {
     totalCapexPkr: totalCost,
     preventedLossPkr: potentialLoss,
     preventedLossUsd: usdLoss,
-    dealerStatus: 'Fatima Khanewal Depot Stock: 850 Bags Available',
+    dealerStatus: 'Agro Depot Stock: 850 Bags Available',
     commercialIncentiveUrdu: willWashout
       ? `اگر بارش سے قبل کھاد ڈالی گئی تو کسان کا **Rs. ${potentialLoss.toLocaleString()}** ($${usdLoss}) کا خالص مالی نقصان ہوگا۔ 48 گھنٹے انتظار پر فصل پے پر 5% سبسڈی رعایت دستیاب ہے۔`
-      : `فاطمہ ڈیلر پر کین گوارا کا تازہ اسٹاک دستیاب ہے۔ فصل پے بائی ناؤ پے لیٹر (BNPL) کے تحت 0% مارک اپ پر ادائیگی کٹائی پر ممکن ہے۔`,
+      : `قریبی زرعی ڈپو پر کین گوارا کا تازہ اسٹاک دستیاب ہے۔ فصل پے بائی ناؤ پے لیٹر (BNPL) کے تحت 0% مارک اپ پر ادائیگی کٹائی پر ممکن ہے۔`,
     commercialIncentiveEn: willWashout
       ? `Applying fertilizer prior to the storm incurs a direct capital loss of Rs. ${potentialLoss.toLocaleString()} ($${usdLoss}). Postponing unlocks a 5% FasalPay green-subsidy window on Thursday.`
       : `Adequate depot inventory verified. FasalPay zero-markup BNPL financing is pre-approved for this farmer.`
@@ -161,7 +161,7 @@ function runChiefArbiterCouncil({ agronomist, weather, economist, efr }) {
     totalAmount: agronomist.recommendedBags * 3900,
     totalUsd: Math.round((agronomist.recommendedBags * 3900) / 278),
     targetApplicationDate: targetDateStr,
-    dealer: efr?.localFatimaDealer || `Fatima Agro Services (${efr?.district || 'Local'} Center)`,
+    dealer: efr?.localFatimaDealer || `Agro Depot & FasalPay Center (${efr?.district || 'Local'})`,
     paymentMethod: 'فصل پے زرعی قرضہ (FasalPay BNPL)',
     status: 'DRAFT_AWAITING_HUMAN_FARMER_SIGN_OFF',
     hitlRequired: true
@@ -193,8 +193,8 @@ function runChiefArbiterCouncil({ agronomist, weather, economist, efr }) {
       targetApplicationDate: targetDateStr,
       draftOrder,
       isClearWeather: true,
-      actionPlanUrdu: `**کونسل کا متفقہ فیصلہ:** موسمی حالات بالکل سازگار ہیں۔ **${targetDateStr}** پر ${agronomist.recommendedBags} بوری سرسبز کین گوارا پہلے پانی کے ساتھ استعمال کریں۔ مطلع صاف ہونے کی وجہ سے کھاد ضائع ہونے کا خطرہ 0% اور پودے کے نائٹروجن جذب کرنے کی شرح 100% ہے۔ نیچے دیے گئے ڈرافٹ آرڈر کی تصدیق فرمائیں۔`,
-      actionPlanEn: `**Unanimous Council Consensus:** Favorable weather confirmed. Optimal application window: ${targetDateStr} for ${agronomist.recommendedBags} bags Sarsabz CAN. 100% nutrient absorption efficiency.`,
+      actionPlanUrdu: `**کونسل کا متفقہ فیصلہ:** موسمی حالات بالکل سازگار ہیں۔ **${targetDateStr}** پر ${agronomist.recommendedBags} بوری کین گوارا پہلے پانی کے ساتھ استعمال کریں۔ مطلع صاف ہونے کی وجہ سے کھاد ضائع ہونے کا خطرہ 0% اور پودے کے نائٹروجن جذب کرنے کی شرح 100% ہے۔ نیچے دیے گئے ڈرافٹ آرڈر کی تصدیق فرمائیں۔`,
+      actionPlanEn: `**Unanimous Council Consensus:** Favorable weather confirmed. Optimal application window: ${targetDateStr} for ${agronomist.recommendedBags} bags CAN. 100% nutrient absorption efficiency.`,
       nextSafeWindow: `${targetDateStr} (Next 24 Hours)`,
       lossPreventedPkr: 0,
       lossPreventedUsd: 0,
@@ -221,7 +221,7 @@ async function conductMultiAgentDebate({ location = null, crop = 'Wheat', acres 
     fieldId: `EFR-PK-${(coords.name || 'AGRI').substring(0, 3).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`,
     district: coords.name,
     coordinates: { lat: coords.lat, lon: coords.lon },
-    localFatimaDealer: `Fatima Agro Services (${coords.name} Regional Hub)`,
+    localFatimaDealer: `Agro Depot & FasalPay Center (${coords.name})`,
     crop,
     acreage: acres
   };
