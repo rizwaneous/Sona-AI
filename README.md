@@ -1,4 +1,4 @@
-# Noor AI Agent FFC - (نور اے آئی ایجنٹ | فوجی فرٹیلائزر کمپنی)
+SONA AI - 
 
 **Noor AI Agent FFC** is an industry-level Proof of Concept (POC) designed for **Fauji Fertilizer Company Limited (FFC)** Pakistan. It empowers Pakistani farmers (*Kashtkars*) to ask questions about FFC fertilizers (Sona Urea, Sona DAP, Sona Boron DAP, FFC SOP, FFC MOP, Sona Zinc) and crop management by typing or speaking in **Urdu**.
 
@@ -42,7 +42,7 @@ The `.env` file in `D:\Noor AI Agent FFC\.env` contains:
 
 ---
 
-## 🌾 FFC Product Portfolio Covered
+## 🌾 Product Portfolio Covered
 - **Sona Urea (سونا یوریا - 46% N)**: Prilled, Granular, Neem-Coated, Zinc-Coated
 - **Sona DAP (سونا ڈی اے پی - 18-46-0)**
 - **Sona Boron DAP (سونا بوران ڈی اے پی - 0.1% Boron)**
