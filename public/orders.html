@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FasalPay & Sarsabz - Live Orders & Financing Portal</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #00873D;
+      --secondary: #FFD100;
+      --navy: #0A192F;
+      --cyan: #00B4D8;
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --border: #E2E8F0;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: var(--bg); color: var(--text-main); padding-bottom: 50px; }
+
+    /* Top Executive Bar */
+    .admin-header {
+      background: var(--navy);
+      color: #FFFFFF;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .brand-title { display: flex; align-items: center; gap: 12px; }
+    .brand-title h1 { font-size: 1.25rem; font-weight: 800; }
+    .brand-title span { color: var(--secondary); }
+    .live-badge {
+      background: rgba(16, 185, 129, 0.2);
+      color: #10B981;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .live-dot { width: 8px; height: 8px; background: #10B981; border-radius: 50%; animation: pulse 1.5s infinite; }
+    @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+
+    .header-btns { display: flex; gap: 10px; }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary { background: var(--primary); color: #FFF; }
+    .btn-primary:hover { background: #006E31; }
+    .btn-outline { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: #FFF; }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* Metrics Overview Grid */
+    .metrics-container {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .metric-card {
+      background: var(--card);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .metric-header { display: flex; justify-content: space-between; color: var(--text-muted); font-size: 0.85rem; font-weight: 600; }
+    .metric-value { font-size: 1.75rem; font-weight: 800; margin: 10px 0 4px 0; color: var(--navy); }
+    .metric-sub { font-size: 0.75rem; color: #10B981; font-weight: 600; }
+
+    /* Orders Table Section */
+    .orders-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .table-card {
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+    .table-toolbar {
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .search-input {
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      width: 280px;
+    }
+    .filter-select {
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      background: #FFF;
+    }
+
+    table { width: 100%; border-collapse: collapse; text-align: left; }
+    th {
+      background: #F1F5F9;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 14px 18px;
+    }
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+    tr:hover { background: #F8FAFC; }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .status-approved { background: #DCFCE7; color: #166534; }
+    .status-pending { background: #FEF3C7; color: #92400E; }
+    .order-id { font-weight: 700; color: var(--primary); }
+    .farmer-name { font-weight: 600; color: var(--navy); }
+    .farmer-phone { font-size: 0.75rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- Top Executive Header -->
+  <header class="admin-header">
+    <div class="brand-title">
+      <i class="fa-solid fa-seedling text-green" style="color: #FFD100; font-size: 1.4rem;"></i>
+      <h1>FasalPay & Sarsabz <span>Orders Portal</span></h1>
+      <div class="live-badge">
+        <div class="live-dot"></div> Supabase Live Sync
+      </div>
+    </div>
+
+    <div class="header-btns">
+      <button id="clearOrdersBtn" class="btn btn-outline" style="border-color: #EF4444; color: #EF4444;" title="Clear All Orders">
+        <i class="fa-solid fa-trash-can"></i> Clear All Orders
+      </button>
+      <button id="exportCsvBtn" class="btn btn-outline">
+        <i class="fa-solid fa-file-excel"></i> Export to CSV
+      </button>
+      <a href="/" class="btn btn-primary">
+        <i class="fa-solid fa-arrow-left"></i> Open Sarsabz AI Chat
+      </a>
+    </div>
+  </header>
+
+  <!-- Metrics Overview Cards -->
+  <div class="metrics-container">
+    <div class="metric-card">
+      <div class="metric-header">
+        <span>TOTAL ORDERS PLACED</span>
+        <i class="fa-solid fa-cart-shopping text-cyan"></i>
+      </div>
+      <div class="metric-value" id="metricTotalOrders">0</div>
+      <div class="metric-sub"><i class="fa-solid fa-arrow-trend-up"></i> Real-Time Inflow</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-header">
+        <span>TOTAL FERTILIZER VALUE</span>
+        <i class="fa-solid fa-money-bill-wave text-green"></i>
+      </div>
+      <div class="metric-value" id="metricTotalRevenue">Rs. 0</div>
+      <div class="metric-sub">FasalPay Financed + Cash</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-header">
+        <span>TOTAL BAGS ORDERED</span>
+        <i class="fa-solid fa-cubes-stacked text-orange"></i>
+      </div>
+      <div class="metric-value" id="metricTotalBags">0 Bags</div>
+      <div class="metric-sub">Sarsabz CAN, NP & Urea</div>
+    </div>
+
+    <div class="metric-card">
+      <div class="metric-header">
+        <span>ACTIVE DEALER DISPATCH</span>
+        <i class="fa-solid fa-store text-cyan"></i>
+      </div>
+      <div class="metric-value" id="metricDealers">4 Branches</div>
+      <div class="metric-sub">Khanewal, Multan, R.Y. Khan</div>
+    </div>
+  </div>
+
+  <!-- Orders Table Section -->
+  <section class="orders-section">
+    <div class="table-card">
+      <div class="table-toolbar">
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by Farmer, Phone, or Order ID...">
+          <select id="districtFilter" class="filter-select">
+            <option value="all">All Districts (تمام اضلاع)</option>
+            <option value="Islamabad">Islamabad (اسلام آباد)</option>
+            <option value="Rawalpindi">Rawalpindi (راولپنڈی)</option>
+            <option value="Khanewal">Khanewal (خانیوال)</option>
+            <option value="Multan">Multan (ملتان)</option>
+            <option value="Rahim Yar Khan">Rahim Yar Khan (رحیم یار خان)</option>
+          </select>
+        </div>
+
+        <button id="refreshOrdersBtn" class="btn btn-outline" style="color: var(--navy); border-color: var(--border);">
+          <i class="fa-solid fa-rotate-right"></i> Refresh Table
+        </button>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table id="ordersTable">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Farmer Name & Phone</th>
+              <th>District / Tehsil</th>
+              <th>Ordered Products</th>
+              <th>Total Amount</th>
+              <th>Payment & Financing</th>
+              <th>Order Status</th>
+              <th>HITL Human Verification</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <tr>
+              <td colspan="9" style="text-align: center; padding: 40px; color: var(--text-muted);">
+                <i class="fa-solid fa-spinner fa-spin"></i> Loading live orders from Supabase...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Script for Live Admin Portal -->
+  <script>
+    let allOrders = [];
+
+    async function loadOrders() {
+      try {
+        const res = await fetch('/api/orders');
+        const data = await res.json();
+        allOrders = data.orders || [];
+        renderOrders(allOrders);
+        updateMetrics(allOrders);
+      } catch (e) {
+        console.error('Error fetching orders:', e);
+      }
+    }
+
+    function updateMetrics(orders) {
+      document.getElementById('metricTotalOrders').innerText = orders.length;
+      
+      const totalRev = orders.reduce((sum, o) => sum + (Number(o.total_amount) || 0), 0);
+      document.getElementById('metricTotalRevenue').innerText = `Rs. ${totalRev.toLocaleString()}`;
+
+      // Estimate bags count
+      const totalBags = orders.length * 15;
+      document.getElementById('metricTotalBags').innerText = `${totalBags} Bags`;
+    }
+
+    function renderOrders(orders) {
+      const tbody = document.getElementById('ordersTableBody');
+      if (!orders || orders.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="9" style="text-align: center; padding: 40px; color: var(--text-muted);">
+              <i class="fa-solid fa-inbox" style="font-size: 2rem; margin-bottom: 8px;"></i><br>
+              No orders placed yet. Place an order on the Sarsabz AI Chat to see it appear live here!
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = orders.map(o => {
+        const isHumanApproved = (o.status && o.status.includes('HUMAN VERIFIED')) || (o.human_verified_by);
+        const hitlActionHtml = isHumanApproved ? `
+          <span class="status-badge status-approved" title="Verified by ${o.human_verified_by || 'Dealer Officer'}">
+            <i class="fa-solid fa-user-check"></i> ${o.human_verified_by || 'Human Signed'}
+          </span>
+        ` : `
+          <button class="btn btn-primary btn-sm dealer-sign-btn" data-order-id="${o.order_id}" style="padding: 4px 8px; font-size: 0.72rem; background: #00873D;">
+            <i class="fa-solid fa-signature"></i> Human Dealer Sign-Off
+          </button>
+        `;
+
+        return `
+          <tr>
+            <td><span class="order-id">${o.order_id || 'FP-84920'}</span></td>
+            <td>
+              <div class="farmer-name">${o.farmer_name || 'کسان بھائی'}</div>
+              <div class="farmer-phone">${o.phone || '0300-XXXXXXX'}</div>
+            </td>
+            <td>${o.district || 'پنجاب'}</td>
+            <td><strong>${o.items || 'سرسبز کھاد پیکج'}</strong></td>
+            <td><strong>Rs. ${(Number(o.total_amount) || 0).toLocaleString()}</strong></td>
+            <td><span style="font-size: 0.8rem; color: #0284C7; font-weight: 600;"><i class="fa-solid fa-shield-halved"></i> ${o.payment_method || 'FasalPay BNPL'}</span></td>
+            <td><span class="status-badge ${isHumanApproved ? 'status-approved' : 'status-pending'}"><i class="fa-solid ${isHumanApproved ? 'fa-circle-check' : 'fa-clock'}"></i> ${o.status || 'Pending Sign-off'}</span></td>
+            <td>${hitlActionHtml}</td>
+            <td style="font-size: 0.75rem; color: var(--text-muted);">${new Date(o.created_at || Date.now()).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' })}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Dealer Sign-off Handler (HITL Gate 3)
+    document.addEventListener('click', async (e) => {
+      const btn = e.target.closest('.dealer-sign-btn');
+      if (btn) {
+        const orderId = btn.getAttribute('data-order-id');
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Signing...';
+        try {
+          const res = await fetch(`/api/orders/${orderId}/dealer-approve`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ operatorName: 'Fatima Depot Manager (Khanewal)' })
+          });
+          const data = await res.json();
+          if (data.success) {
+            await loadOrders();
+          }
+        } catch (err) {
+          alert('Failed to sign off order.');
+        }
+      }
+    });
+
+    // Search and Filter
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = allOrders.filter(o => 
+        (o.farmer_name && o.farmer_name.toLowerCase().includes(q)) ||
+        (o.phone && o.phone.includes(q)) ||
+        (o.order_id && o.order_id.toLowerCase().includes(q))
+      );
+      renderOrders(filtered);
+    });
+
+    document.getElementById('refreshOrdersBtn').addEventListener('click', () => {
+      loadOrders();
+    });
+
+    // Clear All Orders
+    document.getElementById('clearOrdersBtn').addEventListener('click', async () => {
+      if (confirm('Are you sure you want to clear ALL orders from the database? This cannot be undone.')) {
+        try {
+          const res = await fetch('/api/orders/clear', { method: 'POST' });
+          const data = await res.json();
+          if (data.success) {
+            allOrders = [];
+            renderOrders([]);
+            updateMetrics([]);
+            alert('All orders cleared successfully.');
+          }
+        } catch (e) {
+          alert('Error clearing orders.');
+        }
+      }
+    });
+
+    // 1-Click Export to CSV
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      if (allOrders.length === 0) return alert('No orders to export.');
+
+      let csv = 'Order ID,Farmer Name,Phone,District,Items,Total Amount,Payment Mode,Status,Date\n';
+      allOrders.forEach(o => {
+        csv += `"${o.order_id}","${o.farmer_name}","${o.phone}","${o.district}","${o.items}","${o.total_amount}","${o.payment_method}","${o.status}","${o.created_at}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.setAttribute('href', url);
+      a.setAttribute('download', `FasalPay_Sarsabz_Orders_${Date.now()}.csv`);
+      a.click();
+    });
+
+    // Initial load + poll every 10 seconds
+    loadOrders();
+    setInterval(loadOrders, 10000);
+  </script>
+</body>
+</html>

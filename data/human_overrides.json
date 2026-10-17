@@ -1,0 +1,13 @@
+[
+  {
+    "id": "OVR-56235",
+    "farmer_name": "Muhammad Aslam",
+    "district": "Khanewal",
+    "crop": "Wheat",
+    "action_taken": "Manual Fertilizer Application Despite Rain Hazard",
+    "ai_warning": "Council recommended 48h freeze",
+    "override_reason": "Operator manual discretion",
+    "status": "MANUAL_HUMAN_OVERRIDE_RECORDED",
+    "timestamp": "2026-10-17T03:12:36.235Z"
+  }
+]

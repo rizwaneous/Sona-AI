@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sarsabz AI - Fatima Fertilizer & FasalPay Digital Platform</title>
+  <meta name="description" content="Sarsabz AI - Fatima Fertilizer & FasalPay Official Voice-First AI Agronomist and Digital Fertilizer Ordering Platform">
+  
+  <!-- Google Fonts: Inter & Noto Nastaliq Urdu -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- Top Executive Navbar (English UI) -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand-identity">
+        <!-- Official Fatima Fertilizer & FasalPay Vector Logo -->
+        <div class="sarsabz-logo-container">
+          <svg class="sarsabz-logo-svg" viewBox="0 0 220 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="23" r="16" fill="#00873D"/>
+            <path d="M12 28 C14 18, 22 14, 28 20 C24 24, 18 26, 16 30" fill="#FFD100"/>
+            <circle cx="24" cy="18" r="3" fill="#FFFFFF"/>
+            <text x="44" y="24" font-family="'Inter', sans-serif" font-weight="900" font-size="16" fill="#00873D" letter-spacing="0.5">SARSABZ AI</text>
+            <text x="45" y="36" font-family="'Inter', sans-serif" font-weight="700" font-size="7.5" fill="#0A192F" letter-spacing="0.5">FATIMA & FASALPAY</text>
+          </svg>
+        </div>
+        <div class="brand-divider"></div>
+        <div class="brand-text">
+          <h1>Sarsabz AI <span class="brand-status-dot" title="Online"></span></h1>
+          <p class="company-name">Fatima Fertilizer & FasalPay</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- Direct Order Modal Button -->
+        <button id="openOrderBtn" class="btn btn-warning" title="Order Fertilizer">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span>Order</span>
+        </button>
+
+        <!-- Auto-Detect Farm GPS Button -->
+        <button id="autoGpsBtn" class="btn btn-outline" title="Auto-Detect My Farm (GPS Location)">
+          <i class="fa-solid fa-location-crosshairs text-green"></i>
+          <span>GPS</span>
+        </button>
+
+        <!-- Multi-Agent Consensus Council Chamber -->
+        <button id="councilBtn" class="btn btn-outline" title="Multi-Agent Collaborative Debate Council (CIO Feature)">
+          <i class="fa-solid fa-users-gear text-green"></i>
+          <span>Council</span>
+        </button>
+
+        <!-- Crop Doctor Multimodal Leaf Vision Scanner -->
+        <button id="cropDoctorBtn" class="btn btn-outline" title="Crop Doctor (On-Device Vision Diagnostics)">
+          <i class="fa-solid fa-camera-retro text-green"></i>
+          <span>Crop Doctor</span>
+        </button>
+
+        <!-- IBM Watson Electronic Field Record (EFR) -->
+        <button id="efrBtn" class="btn btn-outline" title="IBM Electronic Field Record (Farm Digital Twin)">
+          <i class="fa-solid fa-id-card-clip text-green"></i>
+          <span>Farm EFR</span>
+        </button>
+
+        <!-- Proactive Sentinel Climate Anomaly Simulator -->
+        <button id="simulateStormBtn" class="btn btn-emergency" title="Simulate Climate Hazard (Proactive Agent)">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>🚨 Storm</span>
+        </button>
+
+        <!-- Admin Orders Dashboard Link -->
+        <a href="/orders" target="_blank" class="btn btn-outline" title="Orders Portal">
+          <i class="fa-solid fa-table-list text-green"></i>
+          <span>Orders</span>
+        </a>
+
+        <!-- Farm Profile Setup Button -->
+        <button id="farmProfileBtn" class="btn btn-outline" title="My Farm Profile (میری زمین اور فصلیں)">
+          <i class="fa-solid fa-wheat-awn text-green"></i>
+          <span>Profile</span>
+        </button>
+
+        <!-- Dosage Calculator -->
+        <button id="calculatorBtn" class="btn btn-outline" title="Dosage Calculator">
+          <i class="fa-solid fa-calculator text-green"></i>
+          <span>Calc</span>
+        </button>
+
+        <!-- Voice Settings -->
+        <button id="voiceSettingsBtn" class="btn btn-primary" title="Voice Settings">
+          <i class="fa-solid fa-sliders"></i>
+          <span>Voice</span>
+        </button>
+
+        <!-- Clear Chat -->
+        <button id="clearChatBtn" class="btn btn-outline" title="Clear Chat">
+          <i class="fa-solid fa-trash-can text-green"></i>
+          <span>Clear</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Active Farmer Profile Status Bar (Digital Twin Context) -->
+  <section class="active-farmer-bar" id="activeFarmerBar">
+    <div class="farmer-bar-inner">
+      <div class="farmer-bar-left">
+        <div class="farmer-avatar-badge" id="barAvatarBadge"><i class="fa-solid fa-seedling"></i></div>
+        <div class="farmer-meta-text">
+          <div class="farmer-name-row">
+            <strong id="barFarmerName">Muhammad Aslam (محمد اسلم)</strong>
+            <span class="profile-badge-active" id="barStatusBadge"><i class="fa-solid fa-circle-check"></i> Farm Profile Active</span>
+          </div>
+          <div class="farmer-specs-row" id="barSpecsRow">
+            <span id="barFarmerLand"><i class="fa-solid fa-vector-square text-green"></i> 10 Acres</span>
+            <span class="dot-separator">•</span>
+            <span id="barFarmerCrop"><i class="fa-solid fa-wheat-awn text-green"></i> Wheat (گندم - Tillering)</span>
+            <span class="dot-separator">•</span>
+            <span id="barFarmerDistrict"><i class="fa-solid fa-location-dot text-green"></i> Local Farm (GPS)</span>
+            <span class="dot-separator">•</span>
+            <span id="barFarmerChallenge" class="farmer-issue-chip"><i class="fa-solid fa-triangle-exclamation text-yellow"></i> Leaf Yellowing</span>
+          </div>
+        </div>
+      </div>
+      <div class="farmer-bar-right-actions">
+        <button class="btn btn-sm btn-outline edit-profile-btn" id="openProfileModalBtn">
+          <i class="fa-solid fa-user-pen"></i> Update Farm Profile (پروفائل بدلیں)
+        </button>
+        <button class="btn btn-sm btn-danger-outline reset-profile-btn" id="adminResetProfileBtn" title="Reset Profile for New Demo / Video (نیا کسان شروع کریں)">
+          <i class="fa-solid fa-rotate-left"></i> Reset Profile (پروفائل مٹائیں)
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Application Workspace -->
+  <main class="app-layout">
+    
+    <!-- Workspace View Mode Switcher: Autonomous Agent Cockpit vs Chatbot -->
+    <div class="workspace-mode-selector">
+      <button class="mode-tab-btn active" id="tabCockpitBtn">
+        <div class="tab-btn-content">
+          <i class="fa-solid fa-robot text-green"></i>
+          <div>
+            <div class="tab-title">Autonomous Agent Cockpit</div>
+            <div class="tab-subtitle">خودکار زرعی کمانڈ سینٹر</div>
+          </div>
+        </div>
+        <span class="mode-pill-active"><i class="fa-solid fa-bolt"></i> AUTONOMOUS</span>
+      </button>
+
+      <button class="mode-tab-btn" id="tabChatbotBtn">
+        <div class="tab-btn-content">
+          <i class="fa-solid fa-comments text-cyan"></i>
+          <div>
+            <div class="tab-title">Interactive Chat &amp; Advisory</div>
+            <div class="tab-subtitle">کسان چیٹ بوٹ اور کونسل</div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <!-- VIEW 1: AUTONOMOUS AGENT COCKPIT (Hero Autonomous Mission Control) -->
+    <section id="agentCockpitView" class="agent-cockpit-view">
+      
+      <!-- Cockpit Mission Control Hero Banner -->
+      <div class="cockpit-hero-banner">
+        <div class="cockpit-hero-top">
+          <div class="cockpit-title-row">
+            <div class="cockpit-agent-avatar">
+              <i class="fa-solid fa-microchip fa-beat-fade text-yellow"></i>
+            </div>
+            <div>
+              <h2 class="cockpit-hero-title">Sona Autonomous Agri-Agent • Mission Control</h2>
+              <p class="cockpit-hero-subtitle">
+                Enterprise Multi-Agent Decision Platform • Powered by Open-Meteo High-Resolution NWP Radar, Soil Digital Twin &amp; FasalPay Fintech
+              </p>
+            </div>
+          </div>
+          <div class="cockpit-status-tag">
+            <span class="live-dot-pulse"></span>
+            <span>SYSTEM ACTIVE • READY</span>
+          </div>
+        </div>
+
+        <!-- Live Digital Twin & Radar HUD Strip -->
+        <div class="cockpit-hud-grid">
+          <div class="hud-box">
+            <div class="hud-label"><i class="fa-solid fa-satellite-dish text-green"></i> GPS Radar Telemetry</div>
+            <div class="hud-val" id="hudGpsVal">Islamabad (33.63°N, 73.14°E)</div>
+            <small class="hud-sub text-green"><i class="fa-solid fa-circle-check"></i> High-Resolution NWP 200 OK</small>
+          </div>
+          <div class="hud-box">
+            <div class="hud-label"><i class="fa-solid fa-wheat-awn text-green"></i> Crop Digital Twin</div>
+            <div class="hud-val" id="hudCropVal">Wheat (گندم) • 10 Acres</div>
+            <small class="hud-sub" id="hudStageVal">Tillering (شگوفے) Stage</small>
+          </div>
+          <div class="hud-box">
+            <div class="hud-label"><i class="fa-solid fa-cloud-sun text-yellow"></i> 10-Day NWP Forecast</div>
+            <div class="hud-val" id="hudWeatherVal">24°C Sunny • 0% Rain Risk</div>
+            <small class="hud-sub text-green"><i class="fa-solid fa-shield-halved"></i> 100% Nutrient Efficiency</small>
+          </div>
+          <div class="hud-box">
+            <div class="hud-label"><i class="fa-solid fa-building-columns text-cyan"></i> FasalPay BNPL Depot</div>
+            <div class="hud-val" id="hudDepotVal">Fatima Regional Depot</div>
+            <small class="hud-sub text-cyan"><i class="fa-solid fa-check"></i> 0% Markup Pre-Approved</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINAL BOSS ACTION CENTER (Hero Command Cards) -->
+      <div class="boss-actions-section">
+        <div class="boss-section-header">
+          <div>
+            <h3 class="boss-section-title"><i class="fa-solid fa-bolt text-yellow"></i> Autonomous Action Center (خودکار ایجنٹ کمانڈز)</h3>
+            <p class="boss-section-subtitle">
+              Click either Boss Action below: Sona will autonomously perform full telemetry sweeps, digital twin audits, multi-agent debates, and prompt you with actionable decisions.
+            </p>
+          </div>
+          <span class="boss-badge-iso"><i class="fa-solid fa-user-shield"></i> ISO 42001 HITL Standard</span>
+        </div>
+
+        <div class="boss-cards-grid">
+          
+          <!-- BOSS BUTTON 1: 1-Click Autonomous Farm Execution Protocol -->
+          <div class="boss-action-card card-protocol">
+            <div class="boss-card-badge"><i class="fa-solid fa-crown text-yellow"></i> BOSS ACTION 1 • 360° PRECISION</div>
+            <h4 class="boss-card-title">⚡ 1-Click Autonomous Farm Audit &amp; Precision Execution</h4>
+            <div class="boss-card-urdu nastaliq">مکمل خودکار زرعی آڈٹ، کھاد کا حساب اور ڈرافٹ آرڈر</div>
+            <p class="boss-card-desc">
+              Executes end-to-end autonomous pipeline: Auto-detects GPS coordinates -> pulls 10-day Open-Meteo NWP radar stream -> reads crop digital twin -> convenes 3-Agent Council -> calculates certified dosage -> presents interactive decision gate to disburse order to your local depot.
+            </p>
+            <div class="boss-features-pills">
+              <span><i class="fa-solid fa-satellite text-green"></i> Live GPS Sweep</span>
+              <span><i class="fa-solid fa-cloud text-blue"></i> 10-Day NWP Radar</span>
+              <span><i class="fa-solid fa-users-gear text-green"></i> 3-Agent Council</span>
+              <span><i class="fa-solid fa-hand-holding-dollar text-yellow"></i> 0% BNPL Timed</span>
+            </div>
+            <button id="btnBossAutonomousAudit" class="boss-action-btn boss-btn-green">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Execute Autonomous Farm Protocol (خودکار پلان چلائیں)</span>
+            </button>
+          </div>
+
+          <!-- BOSS BUTTON 2: Proactive Climate Shield & Crisis Mitigation -->
+          <div class="boss-action-card card-shield">
+            <div class="boss-card-badge badge-emergency"><i class="fa-solid fa-triangle-exclamation text-red"></i> BOSS ACTION 2 • CRISIS SENTINEL</div>
+            <h4 class="boss-card-title">🛡️ Deploy Proactive Climate Shield &amp; Crisis Mitigation</h4>
+            <div class="boss-card-urdu nastaliq">ہنگامی طوفانی انتباہ، کیمیکل فریز اور مالیاتی تحفظ</div>
+            <p class="boss-card-desc">
+              Proactive satellite radar sweep: Detects extreme weather anomalies (flash storm squalls / heat shocks) -> calculates chemical runoff &amp; leaching loss -> enforces 48h chemical application freeze -> generates emergency mitigation protocol saving Rs. 66,000+ ($240).
+            </p>
+            <div class="boss-features-pills">
+              <span><i class="fa-solid fa-radar text-red"></i> Anomaly Radar</span>
+              <span><i class="fa-solid fa-shield-halved text-green"></i> Rs. 66k+ Protected</span>
+              <span><i class="fa-solid fa-lock text-yellow"></i> Chemical Freeze</span>
+              <span><i class="fa-solid fa-truck text-cyan"></i> Depot Alerted</span>
+            </div>
+            <button id="btnBossProactiveShield" class="boss-action-btn boss-btn-shield">
+              <i class="fa-solid fa-shield-halved"></i>
+              <span>Deploy Proactive Crisis Shield (ہنگامی شیلڈ فعال کریں)</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- DYNAMIC AGENT EXECUTION CONSOLE & DECISION DECK -->
+      <div class="cockpit-console-section" id="cockpitConsoleSection">
+        <div class="console-card">
+          <div class="console-card-header">
+            <div class="console-header-left">
+              <i class="fa-solid fa-terminal text-green"></i>
+              <strong>Autonomous Multi-Agent Execution Console &amp; Decision Deck</strong>
+            </div>
+            <span class="console-status-badge" id="consoleStatusBadge"><i class="fa-solid fa-circle"></i> Standby</span>
+          </div>
+
+          <!-- Live 4-Stage Stepper -->
+          <div class="console-stepper" id="consoleStepper">
+            <div class="step-item" id="step1Item">
+              <div class="step-circle"><i class="fa-solid fa-location-crosshairs"></i></div>
+              <div class="step-label">1. GPS &amp; NWP Radar</div>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" id="step2Item">
+              <div class="step-circle"><i class="fa-solid fa-wheat-awn"></i></div>
+              <div class="step-label">2. Digital Twin</div>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" id="step3Item">
+              <div class="step-circle"><i class="fa-solid fa-users-gear"></i></div>
+              <div class="step-label">3. Council Synthesis</div>
+            </div>
+            <div class="step-divider"></div>
+            <div class="step-item" id="step4Item">
+              <div class="step-circle"><i class="fa-solid fa-gavel"></i></div>
+              <div class="step-label">4. Decision Gate</div>
+            </div>
+          </div>
+
+          <!-- Console Dynamic Content Area -->
+          <div class="console-content-area" id="consoleContentArea">
+            
+            <!-- Default Standby State -->
+            <div class="console-standby-state" id="consoleStandbyState">
+              <div class="standby-icon">
+                <i class="fa-solid fa-satellite-dish text-green fa-spin-pulse" style="--fa-animation-duration: 6s;"></i>
+              </div>
+              <h4 class="standby-title">Autonomous Agent Ready in Standby Mode</h4>
+              <p class="standby-text">
+                Click <strong>"Execute Autonomous Farm Protocol"</strong> or <strong>"Deploy Proactive Crisis Shield"</strong> above to launch the autonomous pipeline.<br>
+                Sona will perform real-time telemetry extraction, convene the multi-agent council, and present interactive decision gates for your approval.
+              </p>
+            </div>
+
+            <!-- Dynamic Stream Logs Area (Visible during & after execution) -->
+            <div class="console-stream-logs hidden" id="consoleStreamLogs"></div>
+
+            <!-- Certified Mission Report & Interactive Decision Gate -->
+            <div class="cockpit-decision-deck hidden" id="cockpitDecisionDeck"></div>
+
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VIEW 2: INTERACTIVE CHATBOT & MULTI-AGENT COUNCIL (Traditional Chat View) -->
+    <div id="chatbotView" class="chatbot-view hidden">
+    
+      <!-- Quick Question Chips Bar -->
+      <section class="prompts-container">
+        <div class="prompts-scroll" id="quickPrompts">
+          <button class="prompt-chip" id="chipCouncilDebate">
+            <i class="fa-solid fa-users-gear text-green"></i> 🧠 Multi-Agent Council Debate (CIO)
+          </button>
+          <button class="prompt-chip" id="chipLeafDoctor">
+            <i class="fa-solid fa-camera-retro text-green"></i> 🔬 Leaf Doctor (Vision Scan)
+          </button>
+          <button class="prompt-chip" id="chipFarmEfr">
+            <i class="fa-solid fa-id-card-clip text-green"></i> 📋 IBM Farm Digital Twin (EFR)
+          </button>
+          <button class="prompt-chip" data-prompt="میرے فارم کی لائیو لوکیشن کے مطابق کٹائی اور اسپرے کا شیڈول بتائیں">
+            <i class="fa-solid fa-cloud-sun-rain text-green"></i> 🌦️ Smart Harvest &amp; Spray Plan (Weather AI)
+          </button>
+          <button class="prompt-chip" data-prompt="سرسبز کین گوارا (CAN) کے کیا فوائد ہیں؟">
+            <i class="fa-solid fa-seedling"></i> 🌱 Sarsabz CAN (گوارا)
+          </button>
+          <button class="prompt-chip" data-prompt="مجھے 10 بوری سرسبز کین گوارا کا آرڈر کرنا ہے">
+            <i class="fa-solid fa-cart-plus"></i> 🛒 Order 10 Bags CAN
+          </button>
+          <button class="prompt-chip" data-prompt="فصل پے زرعی قرضہ (FasalPay) کے ذریعے کھاد کیسے حاصل کریں؟">
+            <i class="fa-solid fa-hand-holding-dollar"></i> 🌾 FasalPay Credit Financing
+          </button>
+          <button class="prompt-chip" data-prompt="5 ایکڑ گندم کے لیے فاطمہ کھاد کا مکمل شیڈول بتائیں">
+            <i class="fa-solid fa-wheat-awn"></i> 🌾 5-Acre Wheat Schedule
+          </button>
+        </div>
+      </section>
+
+      <!-- Main Chat Workspace -->
+      <section class="chat-container">
+        <div class="chat-feed" id="chatFeed">
+          
+          <!-- Welcome Message from Sarsabz AI Agent -->
+          <div class="chat-message bot-message">
+            <div class="avatar bot-avatar">
+              <i class="fa-solid fa-seedling"></i>
+            </div>
+            <div class="message-content">
+              <div class="message-header">
+                <span class="sender-name">Sarsabz AI (Fatima Fertilizer &amp; FasalPay)</span>
+                <span class="timestamp">Just now</span>
+              </div>
+              <div class="message-body nastaliq">
+                السلام علیکم کسان بھائی! میں **سرسبز** زرعی رہنماء ہوں۔ 🌿<br><br>
+                آپ فصل کے متعلق سائنسی رہنمائی لے سکتے ہیں یا کھاد کا آرڈر (فصل پے / نقد) بک کروا سکتے ہیں۔ فرمائیں، کیا رہنمائی چاہیے؟
+              </div>
+              
+              <!-- Sarsabz Voice Player Card -->
+              <div class="sarsabz-voice-card">
+                <div class="sarsabz-voice-header">
+                  <div class="sarsabz-badge">
+                    <i class="fa-solid fa-volume-high text-yellow"></i>
+                    <span>Sarsabz Audio Guide (آواز)</span>
+                  </div>
+                  <span class="sarsabz-tag">Fatima Official Voice</span>
+                </div>
+                <div class="audio-player-controls">
+                  <button class="play-audio-btn" data-speech-text="السلام علیکم کسان بھائی! میں سرسبز زرعی رہنماء ہوں۔ فرمائیں، آج آپ کو کس فصل یا کھاد کے متعلق رہنمائی چاہیے؟">
+                    <i class="fa-solid fa-play"></i>
+                  </button>
+                  <div class="audio-progress-bar">
+                    <div class="audio-progress-fill" style="width: 0%;"></div>
+                  </div>
+                  <span class="audio-time">0:00</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+    <!-- Recording Overlay Modal -->
+    <div class="recording-overlay hidden" id="recordingOverlay">
+      <div class="recording-card">
+        <div class="recording-pulse">
+          <i class="fa-solid fa-microphone"></i>
+        </div>
+        <h3>Listening to your voice...</h3>
+        <p class="recording-hint">Please speak your query or fertilizer order in Urdu or English</p>
+        
+        <canvas id="waveformCanvas" width="280" height="50"></canvas>
+        <div id="liveSpeechPreview" class="nastaliq text-green" style="min-height: 32px; font-size: 1.05rem; padding: 6px 12px; background: #E8F8F0; border: 1px dashed #00873D; border-radius: 8px; width: 100%; text-align: center; box-sizing: border-box;">Listening... Speak now</div>
+        
+        <div class="recording-actions">
+          <button id="cancelRecordBtn" class="btn btn-danger-outline">
+            <i class="fa-solid fa-xmark"></i> Cancel
+          </button>
+          <button id="stopRecordBtn" class="btn btn-success">
+            <i class="fa-solid fa-paper-plane"></i> Submit Question
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Bottom Input Toolbar -->
+    <footer class="input-toolbar">
+      <div class="toolbar-container">
+        
+        <!-- Microphone Button -->
+        <button id="micRecordBtn" class="mic-btn" title="Speak in Urdu / English">
+          <i class="fa-solid fa-microphone"></i>
+        </button>
+
+        <!-- Text Input Form -->
+        <form id="chatForm" class="chat-form">
+          <div class="input-wrapper">
+            <textarea id="userInput" placeholder="Type your question or fertilizer order in Urdu / English... (e.g. 10 bags CAN)" rows="1"></textarea>
+          </div>
+
+          <button type="submit" id="sendBtn" class="send-btn" title="Send Message">
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Modal 1: FasalPay Direct Order Form Modal -->
+  <div class="modal-backdrop hidden" id="orderModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-cart-plus text-green"></i> Order Fertilizer (FasalPay Financing)</h3>
+        <button class="close-modal-btn" id="closeOrderModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <form id="directOrderForm">
+          <div class="form-group">
+            <label for="farmerNameInput">Farmer Full Name (کسان کا نام):</label>
+            <input type="text" id="farmerNameInput" class="form-control" placeholder="e.g. Muhammad Aslam Khan" required>
+          </div>
+
+          <div class="form-group">
+            <label for="farmerPhoneInput">Mobile / WhatsApp Number (فون نمبر):</label>
+            <input type="tel" id="farmerPhoneInput" class="form-control" placeholder="e.g. 0300-1234567" required>
+          </div>
+
+          <div class="form-group">
+            <label for="farmerDistrictInput">District / City / Tehsil (ضلع / پتہ):</label>
+            <input type="text" id="farmerDistrictInput" class="form-control" placeholder="e.g. Khanewal / Multan" required>
+          </div>
+
+          <div class="form-group">
+            <label for="productSelect">Select Fertilizer Product (کھاد):</label>
+            <select id="productSelect" class="form-control">
+              <option value="Sarsabz CAN">🌱 Sarsabz CAN (گوارا) - Rs. 3,900/bag</option>
+              <option value="Sarsabz NP">🌾 Sarsabz NitroPhos (NP) - Rs. 8,200/bag</option>
+              <option value="Sarsabz Urea">🌿 Sarsabz Urea (یوریا) - Rs. 4,400/bag</option>
+              <option value="Combo Package">⭐ Wheat Special Package (5 CAN + 5 NP)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quantityInput">Quantity (Bags count):</label>
+            <input type="number" id="quantityInput" class="form-control" value="10" min="1" step="1">
+          </div>
+
+          <div class="form-group">
+            <label for="paymentMethodSelect">Payment & Financing Mode (ادائیگی):</label>
+            <select id="paymentMethodSelect" class="form-control">
+              <option value="فصل پے زرعی قرضہ (FasalPay BNPL - Pay at Harvest)">🌾 FasalPay Credit Financing (Pay after Harvest - 0% Down)</option>
+              <option value="نقد ادائیگی (Cash on Delivery)">💵 Cash on Delivery (نقد ادائیگی)</option>
+            </select>
+          </div>
+
+          <button type="submit" id="submitOrderBtn" class="btn btn-success btn-block">
+            <i class="fa-solid fa-check-circle"></i> Confirm Order & Route to Dealer
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Fatima Fertilizer Dosage Calculator Modal -->
+  <div class="modal-backdrop hidden" id="calcModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-calculator text-green"></i> Fatima Fertilizer Dosage Calculator</h3>
+        <button class="close-modal-btn" id="closeCalcModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="cropSelect">Select Crop (فصل):</label>
+          <select id="cropSelect" class="form-control">
+            <option value="wheat">🌾 Wheat (گندم)</option>
+            <option value="rice">🌾 Rice / Paddy (دھان)</option>
+            <option value="cotton">🌿 Cotton (کپاس)</option>
+            <option value="sugarcane">🎋 Sugarcane (کماد / گنا)</option>
+            <option value="maize">🌽 Maize (مکئی)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="acreInput">Area in Acres (رقبہ ایکڑ میں):</label>
+          <input type="number" id="acreInput" class="form-control" value="5" min="0.5" step="0.5">
+        </div>
+
+        <button id="runCalcBtn" class="btn btn-primary btn-block">
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Calculate Recommended Bags
+        </button>
+
+        <div class="calc-results-card hidden" id="calcResults">
+          <h4>Recommended Fatima Fertilizers (Total Bags):</h4>
+          <ul class="dosage-list">
+            <li><strong>Sarsabz CAN (گوارا):</strong> <span id="resCan">-</span> Bags</li>
+            <li><strong>Sarsabz NitroPhos (NP):</strong> <span id="resNp">-</span> Bags</li>
+            <li><strong>Sarsabz Urea (یوریا):</strong> <span id="resUrea">-</span> Bags</li>
+            <li><strong>Sarsabz Zinc (زنک):</strong> <span id="resZinc">-</span> Packs</li>
+          </ul>
+          <div class="dosage-schedule">
+            <strong>Application Schedule:</strong>
+            <p id="resSchedule" class="nastaliq">-</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Voice Settings -->
+  <div class="modal-backdrop hidden" id="voiceModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-sliders text-green"></i> Voice & Audio Settings</h3>
+        <button class="close-modal-btn" id="closeVoiceModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="voiceSelect">Select Voice Persona:</label>
+          <select id="voiceSelect" class="form-control">
+            <option value="cgSgspJ2msm6clMCkdW9">Jessica / Sarsabz Female Agronomist (Recommended)</option>
+            <option value="EXAVITQu4vr4xnSDxMaL">Sarah - Soft Voice</option>
+            <option value="AZnzlk1XvdvUeBnXmlld">Domi - Clear Voice</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="autoAudioToggle">
+            <input type="checkbox" id="autoAudioToggle"> Auto-play Voice Audio on Response (Off to conserve credits)
+          </label>
+        </div>
+        
+        <div class="modal-footer">
+          <button id="saveVoiceSettingsBtn" class="btn btn-primary btn-block">Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Multimodal Crop Doctor (Leaf Vision Scanner) -->
+  <div class="modal-backdrop hidden" id="cropDoctorModal">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-camera-retro text-green"></i> Multimodal Crop Doctor (Leaf Vision Diagnostics)</h3>
+        <button class="close-modal-btn" id="closeCropDoctorModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          Point camera or upload a diseased crop leaf. Certified pathology diagnosis in Urdu & English with simulated on-device edge micro-model inference.
+        </p>
+
+        <!-- 1-Click Instant Certified Test Presets (For Demos Without Real Leaves) -->
+        <div class="demo-preset-section">
+          <label><strong>1-Click Certified Test Presets (For Hackathon Demo):</strong></label>
+          <div class="preset-buttons-grid">
+            <button class="preset-btn" data-preset="wheat_yellow_rust">
+              <i class="fa-solid fa-wheat-awn text-orange"></i>
+              <span>Wheat Yellow Rust (زرد کنگی)</span>
+            </button>
+            <button class="preset-btn" data-preset="cotton_leaf_curl">
+              <i class="fa-solid fa-leaf text-green"></i>
+              <span>Cotton Leaf Curl (پتا مروڑ)</span>
+            </button>
+            <button class="preset-btn" data-preset="rice_blast">
+              <i class="fa-solid fa-seedling text-blue"></i>
+              <span>Rice Leaf Blast (جھلساؤ)</span>
+            </button>
+            <button class="preset-btn" data-preset="healthy_wheat">
+              <i class="fa-solid fa-shield-heart text-green"></i>
+              <span>Healthy Wheat Leaf</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="upload-divider"><span>OR UPLOAD CUSTOM LEAF PHOTO</span></div>
+
+        <div class="custom-upload-box">
+          <input type="file" id="leafFileInput" accept="image/*" class="hidden">
+          <button class="btn btn-outline btn-block" id="triggerUploadBtn">
+            <i class="fa-solid fa-cloud-arrow-up text-green"></i> <span>Choose Leaf Image / Capture from Camera</span>
+          </button>
+          <div id="imagePreviewContainer" class="hidden image-preview-wrapper" style="margin-top: 10px; text-align: center;">
+            <img id="leafImagePreview" src="" alt="Selected Leaf" style="max-height: 180px; border-radius: 8px; border: 1px solid #E2E8F0; margin-bottom: 8px;">
+            <br>
+            <button class="btn btn-primary btn-sm" id="analyzeCustomImageBtn">
+              <i class="fa-solid fa-microscope"></i> Diagnose Custom Image
+            </button>
+          </div>
+        </div>
+
+        <!-- Diagnosis Result Card -->
+        <div id="cropDoctorResult" class="hidden crop-doctor-result-card" style="margin-top: 16px;">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 5: IBM Watson Electronic Field Record (EFR) Digital Twin -->
+  <div class="modal-backdrop hidden" id="efrModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-id-card-clip text-green"></i> Electronic Field Record (Farm Digital Twin)</h3>
+        <button class="close-modal-btn" id="closeEfrModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="modal-body" id="efrModalBody">
+        <div class="efr-badge-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; background: #F8FAFC; padding: 10px 14px; border-radius: 8px; border: 1px solid #E2E8F0;">
+          <span class="efr-id-tag font-bold text-green"><i class="fa-solid fa-fingerprint"></i> Field ID: EFR-PK-KHW-9021</span>
+          <span class="efr-cloud-sync" style="font-size: 0.82rem; color: #64748B;"><i class="fa-solid fa-cloud text-green"></i> IBM Watson Architecture Synced</span>
+        </div>
+        <div class="efr-stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.88rem;">
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">Farmer Name:</span>
+            <span class="stat-v font-bold">Muhammad Aslam</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">District / Parcel:</span>
+            <span class="stat-v font-bold">Khanewal (10.0 Acres)</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">Current Crop:</span>
+            <span class="stat-v font-bold">Wheat (Faisalabad-08)</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">Soil Profile:</span>
+            <span class="stat-v font-bold">Clay Loam (pH 7.9)</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">Organic Matter:</span>
+            <span class="stat-v font-bold text-orange">0.84% (Low Nitrogen)</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">Soil Moisture:</span>
+            <span class="stat-v font-bold text-blue">42% (Adequate)</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">FasalPay BNPL Line:</span>
+            <span class="stat-v font-bold text-green">Rs. 111,000 / 150,000</span>
+          </div>
+          <div class="efr-stat" style="background: #F1F5F9; padding: 10px; border-radius: 6px;">
+            <span class="stat-k text-gray-600 block text-xs">Assigned Dealer:</span>
+            <span class="stat-v font-bold">Fatima Agro Services Khanewal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 6: Farmer Digital Twin Profile Onboarding Wizard -->
+  <div class="modal-backdrop hidden" id="farmerProfileModal">
+    <div class="modal-card modal-lg profile-modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <h3><i class="fa-solid fa-seedling text-green"></i> Farm Profile Setup • فارم کی تفصیلات</h3>
+          <p class="modal-subtitle">Tell us about your land &amp; crops so Sarsabz AI delivers personalized agronomy advice.</p>
+        </div>
+        <button class="close-modal-btn" id="closeProfileModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="modal-body profile-wizard-body">
+        <form id="farmerProfileForm">
+
+          <!-- Question 1: Farmer Name -->
+          <div class="profile-question-box">
+            <div class="question-header">
+              <span class="q-number">1</span>
+              <div class="q-text-wrap">
+                <label for="profNameInput" class="q-label-urdu nastaliq">آپ کا پورا نام کیا ہے؟</label>
+                <span class="q-label-en">What is your full name?</span>
+              </div>
+              <button type="button" class="q-speak-btn" data-speak="آپ کا پورا نام کیا ہے؟ What is your full name?" title="Listen to question in Urdu">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="input-with-voice">
+              <input type="text" id="profNameInput" class="form-control" value="محمد اسلم" placeholder="e.g. محمد اسلم / Muhammad Aslam" required>
+              <button type="button" class="field-mic-btn" data-target="profNameInput" title="Speak your name">
+                <i class="fa-solid fa-microphone"></i> <span>Speak</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 2: Land Location & District -->
+          <div class="profile-question-box">
+            <div class="question-header">
+              <span class="q-number">2</span>
+              <div class="q-text-wrap">
+                <label for="profDistrictInput" class="q-label-urdu nastaliq">آپ کا فارم کس ضلع یا علاقے میں واقع ہے؟</label>
+                <span class="q-label-en">Which district or location is your farm in?</span>
+              </div>
+              <button type="button" class="q-speak-btn" data-speak="آپ کا فارم کس ضلع میں واقع ہے؟ Which district is your farm in?" title="Listen to question">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="quick-chips-row" id="districtChips">
+              <button type="button" class="mini-chip chip-gps" id="profGpsBtn"><i class="fa-solid fa-location-crosshairs"></i> Auto-GPS (Real Location)</button>
+              <button type="button" class="mini-chip" data-val="Islamabad">اسلام آباد (Islamabad)</button>
+              <button type="button" class="mini-chip" data-val="Rawalpindi">راولپنڈی (Rawalpindi)</button>
+              <button type="button" class="mini-chip" data-val="Lahore">لاہور (Lahore)</button>
+              <button type="button" class="mini-chip" data-val="Multan">ملتان (Multan)</button>
+              <button type="button" class="mini-chip" data-val="Faisalabad">فیصل آباد (Faisalabad)</button>
+              <button type="button" class="mini-chip" data-val="Khanewal">خانیوال (Khanewal)</button>
+            </div>
+            <div class="input-with-voice" style="margin-top: 8px;">
+              <input type="text" id="profDistrictInput" class="form-control" placeholder="Click 'Auto-GPS' or enter district / city name" required>
+              <button type="button" class="field-mic-btn" data-target="profDistrictInput" title="Speak your district">
+                <i class="fa-solid fa-microphone"></i> <span>Speak</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 3: Total Land Size (Acres) -->
+          <div class="profile-question-box">
+            <div class="question-header">
+              <span class="q-number">3</span>
+              <div class="q-text-wrap">
+                <label for="profAcresInput" class="q-label-urdu nastaliq">آپ کی کل کاشتکاری اراضی کتنے ایکڑ ہے؟</label>
+                <span class="q-label-en">What is your total land area in acres?</span>
+              </div>
+              <button type="button" class="q-speak-btn" data-speak="آپ کی کل اراضی کتنے ایکڑ ہے؟ What is your total farm area in acres?" title="Listen to question">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="quick-chips-row" id="acreChips">
+              <button type="button" class="mini-chip" data-val="5">5 ایکڑ (5 Acres)</button>
+              <button type="button" class="mini-chip active" data-val="10">10 ایکڑ (10 Acres)</button>
+              <button type="button" class="mini-chip" data-val="25">25 ایکڑ (25 Acres)</button>
+              <button type="button" class="mini-chip" data-val="50">50 ایکڑ (50 Acres)</button>
+            </div>
+            <div class="input-with-voice" style="margin-top: 8px;">
+              <input type="number" id="profAcresInput" class="form-control" value="10" min="0.5" step="0.5" placeholder="Enter acres (e.g. 10)" required>
+              <button type="button" class="field-mic-btn" data-target="profAcresInput" title="Speak land size">
+                <i class="fa-solid fa-microphone"></i> <span>Speak</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Question 4: Current Crops & Growth Stage -->
+          <div class="profile-question-box">
+            <div class="question-header">
+              <span class="q-number">4</span>
+              <div class="q-text-wrap">
+                <label class="q-label-urdu nastaliq">اس وقت کھیت میں کون سی فصل کاشت ہے اور کیا مرحلہ ہے؟</label>
+                <span class="q-label-en">Which crops are sown and what growth stage?</span>
+              </div>
+              <button type="button" class="q-speak-btn" data-speak="کھیت میں کون سی فصل کاشت ہے؟ Which crop is currently sown?" title="Listen to question">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="crops-toggle-grid" id="cropSelectGrid">
+              <button type="button" class="crop-toggle-btn active" data-val="گندم (Wheat)">🌾 گندم (Wheat)</button>
+              <button type="button" class="crop-toggle-btn" data-val="کپاس (Cotton)">🌿 کپاس (Cotton)</button>
+              <button type="button" class="crop-toggle-btn" data-val="دھان / چاول (Rice)">🍚 دھان (Rice)</button>
+              <button type="button" class="crop-toggle-btn" data-val="کماد / گنا (Sugarcane)">🎋 کماد (Sugarcane)</button>
+              <button type="button" class="crop-toggle-btn" data-val="مکئی (Maize)">🌽 مکئی (Maize)</button>
+              <button type="button" class="crop-toggle-btn" data-val="باغات / سبزیاں (Orchard/Vegetables)">🍅 باغات / سبزیاں</button>
+            </div>
+            <input type="hidden" id="profCropsInput" value="گندم (Wheat)">
+
+            <div style="margin-top: 10px;">
+              <label for="profStageSelect" style="font-size: 0.78rem; font-weight: 700; color: #475569;">Growth Stage (فصل کا موجودہ مرحلہ):</label>
+              <select id="profStageSelect" class="form-control" style="margin-top: 4px;">
+                <option value="شگوفے / پہلا پانی (Tillering / 1st Irrigation)">🌱 شگوفے / پہلا پانی (Tillering / 1st Water)</option>
+                <option value="بوائی کا وقت (Sowing / Seedling)">🌾 بوائی کا وقت (Sowing / Seedling)</option>
+                <option value="پھول اور گوبھ (Flowering / Heading)">🌸 پھول اور گوبھ (Flowering / Heading)</option>
+                <option value="دانہ بھرائی / پکوائی (Grain Filling / Ripening)">🌾 دانہ بھرائی (Grain Filling)</option>
+                <option value="کٹائی کے قریب (Ready for Harvest)">🚜 کٹائی کے قریب (Ready for Harvest)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Question 5: Current Problems & Challenges -->
+          <div class="profile-question-box">
+            <div class="question-header">
+              <span class="q-number">5</span>
+              <div class="q-text-wrap">
+                <label for="profChallengesInput" class="q-label-urdu nastaliq">فصل کو اس وقت کیا مسئلہ یا سوال درپیش ہے؟</label>
+                <span class="q-label-en">What current challenges or questions do you have?</span>
+              </div>
+              <button type="button" class="q-speak-btn" data-speak="فصل کو کیا مسئلہ یا بیماری درپیش ہے؟ What active problems are you facing?" title="Listen to question">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="challenge-chips-grid" id="challengeChips">
+              <button type="button" class="challenge-chip active" data-val="پتوں کا پیلا پن اور نائٹروجن کی کمی (Leaf Yellowing)">🍂 پتوں کا پیلا پن (Leaf Yellowing)</button>
+              <button type="button" class="challenge-chip" data-val="کیڑوں اور سنڈی کا حملہ (Pest / Armyworm Attack)">🐛 کیڑوں کا حملہ (Pest Attack)</button>
+              <button type="button" class="challenge-chip" data-val="بارش کے دوران کھاد اور اسپرے کا وقت (Rain / Spray Timing)">🌧️ بارش و کھاد کا وقت (Weather Timing)</button>
+              <button type="button" class="challenge-chip" data-val="پانی کی کمی اور سوکھا (Water Shortage Stress)">💧 پانی کی کمی (Water Shortage)</button>
+              <button type="button" class="challenge-chip" data-val="فصل پے زرعی قرضہ اور کٹائی پر ادائیگی (FasalPay Credit)">💰 فصل پے زرعی قرضہ (FasalPay Credit)</button>
+            </div>
+            <div class="input-with-voice" style="margin-top: 8px;">
+              <textarea id="profChallengesInput" class="form-control" rows="2" placeholder="e.g. پتے پیلے ہو رہے ہیں اور مجھے کین گوارا کے استعمال کا مشورہ چاہیے..." required>پتوں کا پیلا پن اور نائٹروجن کی کمی (Leaf Yellowing)</textarea>
+              <button type="button" class="field-mic-btn" data-target="profChallengesInput" title="Speak your challenge in Urdu/English">
+                <i class="fa-solid fa-microphone"></i> <span>Speak</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="profile-modal-actions">
+            <button type="submit" id="saveProfileBtn" class="btn btn-success btn-lg btn-block">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Save &amp; Personalize Sarsabz AI (پروفائل محفوظ کریں)
+            </button>
+            <div style="display: flex; gap: 8px; margin-top: 6px;">
+              <button type="button" class="btn btn-outline" id="skipProfileBtn" style="flex: 1;">
+                Skip (بعد میں کریں)
+              </button>
+              <button type="button" class="btn btn-danger-outline" id="modalClearProfileBtn" style="flex: 1;" title="Clear stored profile">
+                <i class="fa-solid fa-trash-can"></i> Clear (پروفائل مٹائیں)
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Client JavaScript Modules -->
+  <script src="js/app.js"></script>
+</body>
+</html>
