@@ -1,7 +1,7 @@
 {
-  "name": "noor-ai-agent-ffc",
+  "name": "sona-ai",
   "version": "1.0.0",
-  "description": "Noor AI Agent - Fauji Fertilizer Company (FFC) Urdu AI GPT Assistant & Sawera Voice Guide",
+  "description": "Sona AI - Autonomous Multi-Agent Agricultural Intelligence Platform",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
