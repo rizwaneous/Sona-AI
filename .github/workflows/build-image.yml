@@ -26,4 +26,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/rizwaneous/sona-ai:v1
+          tags: |
+            ghcr.io/rizwaneous/sona-ai:v1
+            ghcr.io/rizwaneous/sona-ai:latest
