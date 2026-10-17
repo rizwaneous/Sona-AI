@@ -919,36 +919,44 @@ async function generateUrduSpeechAudio(text, voiceId) {
 
   if (!DISABLE_ELEVENLABS) {
     const targetVoice = voiceId || process.env.ELEVENLABS_VOICE_ID || 'cgSgspJ2msm6clMCkdW9';
+    const modelId = process.env.ELEVENLABS_MODEL_ID?.trim() || 'eleven_v3';
+    const seenKeys = new Set();
     const candidateKeys = [
-      process.env.ELEVENLABS_API_KEY,
-      process.env.ELEVENLABS_FALLBACK_API_KEY,
-      Buffer.from('c2tfNGRmZjQ4MzA0MWE1MzI4YWJmMWEzYjU0OWJhYzYzNmQwYTAxNjg3ZDI5N2IzMjYw', 'base64').toString('ascii')
-    ].filter(Boolean);
+      { key: process.env.ELEVENLABS_API_KEY?.trim(), provider: 'elevenlabs-primary' },
+      { key: process.env.ELEVENLABS_FALLBACK_API_KEY?.trim(), provider: 'elevenlabs-secondary' }
+    ].filter(({ key }) => key && !seenKeys.has(key) && seenKeys.add(key));
 
     for (let i = 0; i < candidateKeys.length; i++) {
-      const apiKey = candidateKeys[i];
-      if (!apiKey) continue;
+      const { key: apiKey, provider } = candidateKeys[i];
       try {
-        console.log(`Synthesizing Sona Voice with ElevenLabs (${apiKey.substring(0, 10)}...)...`);
+        console.log(`Synthesizing Sona Voice with ${provider} (${modelId})...`);
         const response = await axios.post(
-          `https://api.elevenlabs.io/v1/text-to-speech/${targetVoice}?optimize_streaming_latency=4`,
+          `https://api.elevenlabs.io/v1/text-to-speech/${encodeURIComponent(targetVoice)}`,
           {
             text: cleanSpeech,
-            model_id: 'eleven_flash_v2_5',
-            voice_settings: { stability: 0.55, similarity_boost: 0.85 }
+            model_id: modelId,
+            language_code: 'ur',
+            voice_settings: { stability: 0.5, similarity_boost: 0.85 }
           },
           {
             headers: { 'xi-api-key': apiKey, 'Content-Type': 'application/json' },
             responseType: 'arraybuffer',
-            timeout: 12000
+            timeout: 30000
           }
         );
 
         if (response.data && response.data.length > 500) {
-          return Buffer.from(response.data);
+          return { audio: Buffer.from(response.data), provider };
         }
       } catch (elevenErr) {
-        console.warn('ElevenLabs API Notice:', elevenErr.response ? (elevenErr.response.data?.detail || elevenErr.response.statusText) : elevenErr.message);
+        let errorCode = elevenErr.code || 'request_failed';
+        try {
+          const errorData = Buffer.isBuffer(elevenErr.response?.data)
+            ? JSON.parse(elevenErr.response.data.toString('utf8')) : elevenErr.response?.data;
+          errorCode = errorData?.detail?.status || errorCode;
+        } catch (_) {}
+        const safeCode = String(errorCode).replace(/[^a-zA-Z0-9_-]/g, '').slice(0,80);
+        console.warn(`${provider} failed (HTTP ${elevenErr.response?.status || 'network'}, ${safeCode}); trying next voice provider.`);
       }
     }
   }
@@ -983,21 +991,25 @@ async function generateUrduSpeechAudio(text, voiceId) {
       }
     }
     if (audioBuffers.length > 0) {
-      return Buffer.concat(audioBuffers);
+      return { audio: Buffer.concat(audioBuffers), provider: 'google' };
     }
   } catch (gttsErr) {
     console.warn('Google Urdu TTS fallback error:', gttsErr.message);
   }
-  return Buffer.from([]);
+  return { audio: Buffer.from([]), provider: 'unavailable' };
 }
 
 app.post('/api/tts', async (req, res) => {
   try {
     const { text, voiceId } = req.body;
-    if (!text) return res.status(400).json({ error: 'Text required' });
+    if (typeof text !== 'string' || !text.trim()) return res.status(400).json({ error: 'Text required' });
+    if (voiceId !== undefined && typeof voiceId !== 'string') return res.status(400).json({ error: 'Invalid voice ID' });
 
-    const audioBuffer = await generateUrduSpeechAudio(text, voiceId);
+    const { audio: audioBuffer, provider } = await generateUrduSpeechAudio(text, voiceId);
+    if (!audioBuffer.length) return res.status(503).json({ error: 'Speech providers unavailable' });
     res.set({
+      'X-TTS-Provider': provider,
+      'Cache-Control': 'no-store',
       'Content-Type': 'audio/mpeg',
       'Content-Disposition': 'inline; filename="sarsabz-voice.mp3"',
       'Content-Length': audioBuffer.length

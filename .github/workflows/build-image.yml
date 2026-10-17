@@ -27,5 +27,6 @@ jobs:
           context: .
           push: true
           tags: |
+            ghcr.io/rizwaneous/sona-ai:sha-${{ github.sha }}
             ghcr.io/rizwaneous/sona-ai:v1
             ghcr.io/rizwaneous/sona-ai:latest

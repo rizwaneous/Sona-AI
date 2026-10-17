@@ -10,12 +10,16 @@ async function testElevenLabsTTS() {
     });
     console.log('Status:', res.status);
     console.log('Content-Type:', res.headers['content-type']);
+    console.log('Voice provider:', res.headers['x-tts-provider'] || 'unknown');
     console.log('Audio Buffer Size (Bytes):', res.data.length);
-    if (res.data.length > 1000) {
+    if (res.data.length > 1000 && res.headers['x-tts-provider']?.startsWith('elevenlabs-')) {
       console.log('✅ ElevenLabs Audio Generation Successful!');
+    } else {
+      throw new Error('ElevenLabs was not used; a fallback or invalid audio was returned');
     }
   } catch (err) {
     console.error('TTS Error:', err.message);
+    process.exitCode = 1;
   }
 }
 
